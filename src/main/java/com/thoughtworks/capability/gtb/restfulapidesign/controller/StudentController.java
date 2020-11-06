@@ -4,9 +4,7 @@ import com.thoughtworks.capability.gtb.restfulapidesign.entity.Student;
 import com.thoughtworks.capability.gtb.restfulapidesign.service.StudentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +20,11 @@ public class StudentController {
     public ResponseEntity<List<Student>> addStudents(@RequestBody List<Student> students) {
         List<Student> allStudents = studentService.addStudents(students);
         return ResponseEntity.status(HttpStatus.CREATED).body(allStudents);
+    }
+
+    @DeleteMapping("/students/{id}")
+    public ResponseEntity<Void> deleteStudentById(@PathVariable Integer id){
+        studentService.deleteStudentById(id);
+        return ResponseEntity.ok().build();
     }
 }
