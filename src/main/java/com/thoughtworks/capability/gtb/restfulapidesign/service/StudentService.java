@@ -37,4 +37,17 @@ public class StudentService {
         }
         this.students.remove(id - 1);
     }
+
+    public List<Student> getAllStudents(String gender) {
+        if (gender == null) {
+            return this.students;
+        }
+        List<Student> students = new ArrayList<>();
+        for (Student student : this.students) {
+            if (student.getGender().equals(gender)) {
+                students.add(student);
+            }
+        }
+        return students;
+    }
 }

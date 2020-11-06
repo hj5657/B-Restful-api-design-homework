@@ -23,8 +23,14 @@ public class StudentController {
     }
 
     @DeleteMapping("/students/{id}")
-    public ResponseEntity<Void> deleteStudentById(@PathVariable Integer id){
+    public ResponseEntity<Void> deleteStudentById(@PathVariable Integer id) {
         studentService.deleteStudentById(id);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/students")
+    public ResponseEntity<List<Student>> getAllStudents(@RequestParam(required = false) String gender) {
+        List<Student> students = studentService.getAllStudents(gender);
+        return ResponseEntity.ok(students);
     }
 }
