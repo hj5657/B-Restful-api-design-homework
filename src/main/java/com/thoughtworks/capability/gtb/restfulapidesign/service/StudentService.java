@@ -20,22 +20,24 @@ public class StudentService {
     }
 
     public List<Student> addStudents(List<Student> students) {
-        Integer size = this.students.size();
-        Integer index = 1;
-        for (Student student : students) {
-            student.setId(size + index);
-            index++;
-        }
         this.students.addAll(students);
         return this.students;
     }
 
     public void deleteStudentById(Integer id) {
-        Integer size = this.students.size();
-        if (id < 1 || id > size) {
+        boolean hasId = false;
+        Student removedStudent = new Student();
+        for (Student student : this.students) {
+            if (student.getId().equals(id)) {
+                hasId = true;
+                removedStudent = student;
+                break;
+            }
+        }
+        if (!hasId) {
             throw new IllegalArgumentException("没有这个学生");
         }
-        this.students.remove(id - 1);
+        this.students.remove(removedStudent);
     }
 
     public List<Student> getAllStudents(String gender) {
@@ -49,5 +51,10 @@ public class StudentService {
             }
         }
         return students;
+    }
+
+    public Student getStudentById(Integer id) {
+
+        return null;
     }
 }
