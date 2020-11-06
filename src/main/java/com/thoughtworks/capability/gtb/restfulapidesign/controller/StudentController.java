@@ -39,4 +39,10 @@ public class StudentController {
         Student student = studentService.getStudentById(id);
         return ResponseEntity.ok(student);
     }
+
+    @PutMapping("/students")
+    public ResponseEntity<Void> updateStudentById(@RequestBody Student student) {
+        studentService.updateStudentById(student);
+        return ResponseEntity.ok().build();
+    }
 }

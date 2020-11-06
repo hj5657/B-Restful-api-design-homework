@@ -54,4 +54,10 @@ public class StudentService {
     public Student getStudentById(Integer id) {
         return findStudent(id);
     }
+
+    public void updateStudentById(Student student) {
+        Student preStudent = findStudent(student.getId());
+        this.students.remove(preStudent);
+        this.students.add(student);
+    }
 }
