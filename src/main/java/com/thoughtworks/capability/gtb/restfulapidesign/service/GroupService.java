@@ -29,6 +29,9 @@ public class GroupService {
     }
 
     public Group[] divideGroups() {
+        for (Group group : groups) {
+            group.getStudents().clear();
+        }
         List<Student> students = studentService.getAllStudents(null);
         int j = 0;
         List<Student> copyStudents = new ArrayList<>();
