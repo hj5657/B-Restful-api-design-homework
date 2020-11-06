@@ -25,19 +25,17 @@ public class StudentService {
     }
 
     public void deleteStudentById(Integer id) {
-        boolean hasId = false;
-        Student removedStudent = new Student();
+        Student student = findStudent(id);
+        this.students.remove(student);
+    }
+
+    private Student findStudent(Integer id) {
         for (Student student : this.students) {
             if (student.getId().equals(id)) {
-                hasId = true;
-                removedStudent = student;
-                break;
+                return student;
             }
         }
-        if (!hasId) {
-            throw new IllegalArgumentException("没有这个学生");
-        }
-        this.students.remove(removedStudent);
+        throw new IllegalArgumentException("没有这个学生");
     }
 
     public List<Student> getAllStudents(String gender) {
@@ -54,7 +52,6 @@ public class StudentService {
     }
 
     public Student getStudentById(Integer id) {
-
-        return null;
+        return findStudent(id);
     }
 }
